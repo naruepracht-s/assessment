@@ -25,7 +25,7 @@
 	* As an admin, I want to add a new lottery ticket So that I can have a lottery store
 	* ในฐานะผู้ดูแลระบบ ฉันต้องการเพิ่มใบลอตเตอรี่ เพื่อที่จะสร้างคลังเก็บลอตเตอรี่
 #### Technical Details: EXP01
-* POST /admin/lotteries
+* POST /admin/lottery
 * ต้องยืนยันสิทธิ์การเข้าใช้งานด้วย basic authentication (username = admin, password = password)
 * Request Body
 ```json
@@ -47,7 +47,7 @@
 	* As a user, I want a list all lottery ticket So that I can pick what I want to buy
 	* ในฐานะผู้ใช้ ฉันต้องการดูรายการลอตเตอรี่ทั้งหมด เพิื่อจะได้เลือกซื้อ
 #### Technical Details: EXP02
-* GET /lotteries
+* GET /lottery
 * Response Body
 ```json
 {
@@ -59,7 +59,7 @@
 	* As a user, I want to buy a lottery ticket So that I can get a change to win
 	* ในฐานะผู้ใช้ ฉันต้องการซื้อลอตเตอรี่ เพื่อที่จะได้ลุ้นถูกหวย
 #### Technical Details: EXP03
-* POST /users/:userId/lotteries/:ticketId
+* POST /users/:userId/lottery/:ticketId
 * userId และ ticketId เป็นค่าที่ผู้ใช้ป้อนเข้ามา
 * Response Body
 ```json
@@ -75,7 +75,7 @@
 #### Technical Details: EXP04
 ```mermaid
 sequenceDiagram
-    Client->>+API Server: call GET /users/:userId/lotteries
+    Client->>+API Server: call GET /users/:userId/lottery
     API Server->>+Database: get all lottery ticket by user
     API Server->>+API Server: calculate total price
     API Server->>+API Server: count of total lottery ticket
@@ -86,7 +86,7 @@ sequenceDiagram
 	* As a user, I want to sell back my lottery ticket So that I can get my money back
 	* ในฐานะผู้ใช้ ฉันต้องการขายคืนลอตเตอรี่เพื่อได้เงินคืน
 #### Technical Details: EXP05
-* DELETE /users/:userId/lotteries/:ticketId
+* DELETE /users/:userId/lottery/:ticketId
 * userId และ ticketId เป็นค่าที่ผู้ใช้ป้อนเข้ามา
 * Response Body
 ```json
