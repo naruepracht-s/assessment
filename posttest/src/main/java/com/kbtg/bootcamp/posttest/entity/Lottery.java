@@ -2,11 +2,13 @@ package com.kbtg.bootcamp.posttest.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Entity
 @Table(name = "lottery")
 @Data
+@AllArgsConstructor
 public class Lottery {
 
     @Id
