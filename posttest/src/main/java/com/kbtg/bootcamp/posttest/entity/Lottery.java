@@ -8,7 +8,6 @@ import lombok.Data;
 @Entity
 @Table(name = "lottery")
 @Data
-@AllArgsConstructor
 public class Lottery {
 
     @Id
@@ -28,5 +27,17 @@ public class Lottery {
     @NotNull
     @Min(value = 0, message = "Amount should not be less than 0")
     private Integer amount;
+
+    public Lottery(Integer id, String ticket, Integer price, Integer amount) {
+        this.id = id;
+        this.ticket = ticket;
+        this.price = price;
+        this.amount = amount;
+    }
+
+    public Lottery() {
+
+    }
+
 
 }

@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface LotteryRepository extends JpaRepository<Lottery, Integer> {
-    Lottery findByTicket(String ticketId);
+    Lottery findByTicket(String ticket);
 
     @Query(value = "SELECT ticket FROM lottery.public.lottery", nativeQuery = true)
     List<String> findAllTickets();

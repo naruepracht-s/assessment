@@ -3,7 +3,9 @@ package com.kbtg.bootcamp.posttest.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
@@ -26,4 +28,14 @@ public class UserTicket {
 
     private Date purchaseDate;
 
+    public UserTicket(Integer id, String userId, Lottery lottery, Date purchaseDate) {
+        this.id = id;
+        this.userId = userId;
+        this.lottery = lottery;
+        this.purchaseDate = purchaseDate;
+    }
+
+    public UserTicket() {
+
+    }
 }

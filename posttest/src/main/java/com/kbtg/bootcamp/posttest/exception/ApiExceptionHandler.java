@@ -6,10 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.method.annotation.HandlerMethodValidationException;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -19,6 +17,7 @@ public class ApiExceptionHandler {
     @ExceptionHandler({Exception.class})
     public ResponseEntity<Object> handleGlobalException(Exception e) {
         //logger("Exception error: {}", e.getMessage());
+        e.printStackTrace();
         ApiExceptionResponse apiExceptionResponse = new ApiExceptionResponse(
                 HttpStatus.INTERNAL_SERVER_ERROR.value(), new ArrayList<>(List.of(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase())), new Date()
         );
@@ -35,7 +34,6 @@ public class ApiExceptionHandler {
         );
         return new ResponseEntity<>(apiExceptionResponse, HttpStatus.BAD_REQUEST);
     }
-
 
     @ExceptionHandler({ConstraintViolationException.class})
     public ResponseEntity<Object> handleConstraintViolationException(ConstraintViolationException e) {
