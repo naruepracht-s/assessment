@@ -10,5 +10,9 @@
         <module name="posttest.main" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="posttest.aot" target="17" />
+      <module name="posttest.aotTest" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>
