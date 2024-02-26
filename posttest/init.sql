@@ -17,5 +17,5 @@ CREATE TABLE user_ticket (
 );
 
 -- Initial data
-INSERT INTO lottery(ticket, price, amount) VALUES(123456, 80, 10);
-INSERT INTO lottery(ticket, price, amount) VALUES(654321, 120, 5);
+--INSERT INTO lottery(ticket, price, amount) VALUES(123456, 80, 10);
+--INSERT INTO lottery(ticket, price, amount) VALUES(654321, 120, 5);
