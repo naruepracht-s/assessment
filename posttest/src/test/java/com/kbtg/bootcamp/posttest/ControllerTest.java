@@ -4,7 +4,7 @@ import com.kbtg.bootcamp.posttest.controller.LotteriesController;
 import com.kbtg.bootcamp.posttest.repository.LotteryRepository;
 import com.kbtg.bootcamp.posttest.security.SecurityConfig;
 import com.kbtg.bootcamp.posttest.service.LotteriesService;
-import jakarta.servlet.http.Cookie;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.Base64;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(MockitoExtension.class)
@@ -34,6 +35,16 @@ public class ControllerTest {
     @MockBean
     private LotteryRepository lotteryRepository;
 
+    private String userId;
+
+    private String ticketId;
+
+    @BeforeEach
+    void setUp() {
+        userId = "0000000001";
+        ticketId = "123456";
+    }
+
     @Test
     public void getLotteries() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders
@@ -44,12 +55,34 @@ public class ControllerTest {
     @Test
     public void createLottery() throws Exception {
         String requestBody = "{\"ticket\": \"123354\", \"price\": 80, \"amount\": 1}";
-        mockMvc.perform(MockMvcRequestBuilders
-                        .post("/admin/lotteries")
+        mockMvc.perform(post("/admin/lotteries")
                         .content(requestBody)
                         .contentType(MediaType.APPLICATION_JSON)
                         .header("Authorization", "Basic " + Base64.getEncoder().encodeToString("admin:password".getBytes())))
                 .andExpect(status().isCreated());
+    }
+
+    @Test
+    public void purchaseLottery() throws Exception {
+        mockMvc.perform(post("/users/{userId}/lotteries/{ticketId}",
+                        userId,
+                        ticketId))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void getUserLotteriesDetail() throws Exception {
+        mockMvc.perform(get("/users/{userId}/lotteries",
+                        userId))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void refundLottery() throws Exception {
+        mockMvc.perform(delete("/users/{userId}/lotteries/{ticketId}",
+                        userId,
+                        ticketId))
+                .andExpect(status().isOk());
     }
 
 }
