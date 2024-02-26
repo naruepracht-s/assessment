@@ -27,7 +27,7 @@ public class LotteriesController {
     @PostMapping("/admin/lotteries")
     public ResponseEntity<TicketResponse> createLottery(
             @Validated @RequestBody Lottery request) {
-        lotteriesService.createLotteries(request);
+        lotteriesService.createLottery(request);
         return new ResponseEntity<>(new TicketResponse(request.getTicket()), HttpStatus.CREATED);
     }
 

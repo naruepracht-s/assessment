@@ -34,7 +34,7 @@ public class LotteriesService {
         return response;
     }
 
-    public void createLotteries(Lottery lottery) {
+    public void createLottery(Lottery lottery) {
         lotteryRepository.save(lottery);
     }
 
